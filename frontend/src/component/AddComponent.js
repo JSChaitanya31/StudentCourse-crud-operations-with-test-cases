@@ -8,15 +8,17 @@ const AddComponent = () => {
     const [studentName, setStudentName] = useState('');
     const [studentEmail, setStudentEmail] = useState('');
     const [course, setCourse] = useState('');
+    const [registrationDate, setRegistrationDate] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const studentData = { studentName, studentEmail, course };
+
+    const studentData = { studentName, studentEmail, course, registrationDate };
 
     function saveStudent(e) {
         e.preventDefault();
 
-        if (studentData.studentName !== "" && studentData.studentEmail !== "" && studentData.course != "") {
+        if (studentData.studentName !== "" && studentData.studentEmail !== "" && studentData.course != ""&& studentData.registrationDate !== "" ) {
             /**If id is present in the parameter, it should update else it should save */
             if (id) {
                 StudentService.updateStudent(id, studentData)
@@ -48,6 +50,8 @@ const AddComponent = () => {
                     setStudentName(res.data.studentName);
                     setStudentEmail(res.data.studentEmail);
                     setCourse(res.data.course);
+                    setRegistrationDate(res.data.registrationDate);
+
                 })
                 .catch(e => console.log(e));
         }
@@ -66,19 +70,29 @@ const AddComponent = () => {
                                 <input className='form-control' 
                                 value={studentName}
                                 onChange={(e) => setStudentName(e.target.value)}
-                                type="text" placeholder='Enter Name' />
+                                type='text' 
+                                placeholder='Enter Name' />
                             </div>
                             <div className='form-group mb-2'>
                                 <input className='form-control' 
                                 value={studentEmail}
                                 onChange={(e) => setStudentEmail(e.target.value)}
-                                type="email" placeholder='Enter Email' />
+                                type='email' 
+                                placeholder='Enter Email' />
                             </div>
                             <div className='form-group mb-2'>
                                 <input className='form-control' 
                                 value={course}
                                 onChange={(e) => setCourse(e.target.value)}
-                                type="text" placeholder='Enter Course' />
+                                type='text'
+                                placeholder='Enter Course' />
+                            </div>
+                            <div className='form-group mb-2'>
+                                <input className='form-control' 
+                                value={registrationDate}
+                                onChange={(e) => setRegistrationDate(e.target.value)}
+                                type='date' 
+                                placeholder='Enter Date ' />
                             </div>
                             <button onClick={(e) => saveStudent(e)} className='btn btn-success'>Save</button> {" "}
                             <Link to={"/registrations"}  className='btn btn-danger' href="">Cancel</Link>

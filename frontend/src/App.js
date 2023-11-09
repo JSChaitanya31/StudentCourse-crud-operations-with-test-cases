@@ -1,5 +1,5 @@
 import AddComponent from "./component/AddComponent";
-import FooterComponent from "./component/FooterComponent";
+// import FooterComponent from "./component/FooterComponent";
 import HeaderComponent from "./component/HeaderComponent";
 import ViewComponent from "./component/ViewComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -15,7 +15,7 @@ function App() {
           <Route path="/add-student" element={<AddComponent />} />
           <Route path="/add-student/:id" element={<AddComponent />} />
         </Routes>
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </div>
     </BrowserRouter>
 

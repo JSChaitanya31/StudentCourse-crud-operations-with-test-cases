@@ -11,6 +11,14 @@ useEffect(()=>{
     getAllStudents();
 },[]);
 
+// const formatDate = (e) => {
+//     if (e != null) {
+//       const date = new Date(e);
+//       const result = date.toISOString().split("T")[0];
+//       return result;
+//     } else return "NA";
+//   };
+
 
 function getAllStudents() {
     StudentService.getAllStudents()
@@ -34,6 +42,7 @@ function deleteStudent(e, id) {
                       <th>StudentName</th>
                       <th>Student Email</th>
                       <th>Course</th>
+                      <th>Date</th>
                       <th>Actions</th>
                   </tr>
               </thead>
@@ -44,6 +53,9 @@ function deleteStudent(e, id) {
                           <td>{student.studentName}</td>
                           <td>{student.studentEmail}</td>
                           <td>{student.course}</td>
+                          <td>{student.registrationDate}</td>
+
+
                           <td>
                               <Link to={`/add-student/${student.id}`} className='btn btn-info' href="">Update</Link> {" "}
                               <a onClick={(e) => deleteStudent(e, student.id)} className='btn btn-danger'>Delete</a>
